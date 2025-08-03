@@ -1,0 +1,29 @@
+--Pls Change your name,username,email and password
+
+
+-- SUPERADMIN
+INSERT INTO users (name, username, email, password, department_id, status, role)
+VALUES (
+'Your Name',
+'Username',
+'YourEmail',
+SHA2(CONCAT('nwr-railway-system', 'Your_Password'), 256),
+NULL,
+'active',
+'superadmin'
+);
+
+
+
+-- 🔑 Good index for finding columns by register_id
+CREATE INDEX idx_register_columns_register_id ON register_columns(register_id);
+
+-- 🔑 Good index for finding all entries of a register
+CREATE INDEX idx_register_entries_dynamic_register_id ON register_entries_dynamic(register_id);
+
+-- 🔑 Good index for fetching all values for one entry
+CREATE INDEX idx_register_entry_values_entry_id ON register_entry_values(entry_id);
+
+-- 🔑 Good index for filtering values by column (useful for reporting)
+CREATE INDEX idx_register_entry_values_column_id ON register_entry_values(column_id);
+
